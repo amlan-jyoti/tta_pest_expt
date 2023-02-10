@@ -1,12 +1,12 @@
 import torch.utils.data as data
 from torchvision import transforms 
 
-from .cifar import CorruptionDataset, cifar_transform, imagenet_transform
-from .visda import VisDaTest, visda_test_transforms
+from dataset.cifar import CorruptionDataset, cifar_transform, imagenet_transform
+from dataset.visda import VisdaValidation, VisDaTest, visda_test_transforms
 #from .adversarial import ImagenetAdversarial, imageneta_transforms
 
-from .randaugment import RandAugment
-from .augmix import AugMix
+from dataset.randaugment import RandAugment
+from dataset.augmix import AugMix
 
 
 class WrapperDataset(data.Dataset):
@@ -32,7 +32,8 @@ class WrapperDataset(data.Dataset):
 
 def get_dataset(dataset, augmentation, corruption=None, level=None, **aug_args):
     if dataset == 'visda':
-        dataset = VisDaTest()
+        # dataset = VisDaTest()
+        dataset = VisdaValidation()
         transform = visda_test_transforms
 
     elif dataset in ['imagenet', 'cifar100', 'cifar10']:
