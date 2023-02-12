@@ -28,7 +28,7 @@ def accuracy_clean(model, dataset, batch_size, class_subset=None, device=None):
     
     acc = 0.0
     model.to(device)
-    dataloader = torch.utils.data.DataLoader(dataset, batch_size=batch_size, shuffle=False, pin_memory=torch.cuda.is_available(), num_workers=8)
+    dataloader = torch.utils.data.DataLoader(dataset, batch_size=batch_size, shuffle=False, pin_memory=torch.cuda.is_available(), num_workers=2)
     # model.eval()
     with torch.no_grad():
         for x, y in tqdm(dataloader):

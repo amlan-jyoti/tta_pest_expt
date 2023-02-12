@@ -32,8 +32,8 @@ class WrapperDataset(data.Dataset):
 
 def get_dataset(dataset, augmentation, corruption=None, level=None, **aug_args):
     if dataset == 'visda':
-        # dataset = VisDaTest()
-        dataset = VisdaValidation()
+        dataset = VisDaTest()
+        # vdataset = VisdaValidation()
         transform = visda_test_transforms
 
     elif dataset in ['imagenet', 'cifar100', 'cifar10']:
