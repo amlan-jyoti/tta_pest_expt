@@ -4,7 +4,7 @@ import torch
 from robustbench.utils import load_model
 from torchvision.models import resnet50, densenet121
 
-from .object_network import ObjectNetwork
+from networks.object_network import ObjectNetwork
 
 CIFAR10_MODELS = {
     "resnet20": lambda: torch.hub.load("chenyaofo/pytorch-cifar-models", "cifar10_resnet20", pretrained=True),
@@ -36,6 +36,7 @@ def get_model(dataset, model_name=None, **kwargs):
     if dataset == 'visda':
         model = ObjectNetwork('resnet50', class_num=12)
         load_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'pretrained', 'visda_resnet50.pth')
-        sd = torch.load(load_path, map_location='cuda' if torch.cuda.is_available() else 'cpu')
-        model.load_state_dict(sd)
+        # load_path = os.path.join('pretrained', 'visda_resnet50.pth')
+        # sd = torch.load(load_path, map_location='cuda' if torch.cuda.is_available() else 'cpu')
+        # model.load_state_dict(sd)
         return model
